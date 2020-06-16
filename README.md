@@ -10,6 +10,9 @@ Official [PyTorch](https://pytorch.org/) implementation of the CVPR 2020 Oral **
 <img width="60%" src="/media/figs/panoptic-teaser.gif"/>
 </a>
 
+## Code
+Code is coming soon.
+
 ## License
 
 The source code is released under the [MIT license](LICENSE.md).

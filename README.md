@@ -10,8 +10,40 @@ Official [PyTorch](https://pytorch.org/) implementation of the CVPR 2020 Oral **
 <img width="60%" src="/media/figs/panoptic-teaser.gif"/>
 </a>
 
-## Code
-Code is coming soon.
+## Install
+```
+git clone https://github.com/TRI-ML/realtime_panoptic.git
+cd realtime_panoptic
+make docker-build
+```
+
+To verify your installation, you can also run our simple test run to conduct inference on 1 test image using our Cityscapes pretrained model:
+```
+make docker-run-test-sample
+```
+
+Now you can start a docker container with interactive mode:
+```
+make docker-start
+```
+## Demo
+We provide demo code to conduct inference on Cityscapes pretrained model. 
+```
+python scripts/demo.py --config-file <config.yaml>  --input <input_image_file> \
+        --pretrained-weight <checkpoint.pth>
+```
+Simple user example using our pretrained model previded in the Models section:
+```
+python scripts/demo.py --config-file ./configs/demo_config.yaml --input media/figs/test.png --pretrained-weight cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth
+```
+
+## Models
+ 
+
+### Cityscapes
+| Model |  PQ | PQ_th | PQ_st | 
+| :--- | :---: | :---: | :---: | 
+| [ResNet-50](https://tri-ml-public.s3.amazonaws.com/github/realtime_panoptic/models/cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth) | 58.8 | 52.1| 63.7 |
 
 ## License
 

@@ -1,0 +1,11 @@
+# Copyright 2020 Toyota Research Institute.  All rights reserved.
+model:
+  name: 'Cityscape_realtime_panoptic'
+  backbone: 'R-50-FPN-RETINANET'
+  panoptic:
+    num_classes: 19
+    num_thing_classes: 8
+    fpn_post_nms_top_n: 100
+    instance_id_range: (11, 18)
+    pre_nms_thresh: 0.06
+

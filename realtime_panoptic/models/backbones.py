@@ -50,17 +50,17 @@ class ResNetWithModifiedFPN(nn.Module):
         return_layers = {'layer1': '0', 'layer2': '1', 'layer3': '2', 'layer4': '3'}
 
         in_channels_stage2 = backbone.inplanes // 8
-        in_channels_list = [
+        self.in_channels_list = [
             0,
             in_channels_stage2 * 2,
             in_channels_stage2 * 4,
             in_channels_stage2 * 8,
         ]
-        
+        none_zero_in_channels_list = [ch for ch in self.in_channels_list if ch is not 0]        
 
         self.body = IntermediateLayerGetter(backbone, return_layers=return_layers)
         self.fpn = FeaturePyramidNetwork(
-            in_channels_list=in_channels_list,
+            in_channels_list=none_zero_in_channels_list,
             out_channels=out_channels,
             extra_blocks=LastLevelP6P7(out_channels, out_channels),
         )
@@ -68,5 +68,9 @@ class ResNetWithModifiedFPN(nn.Module):
 
     def forward(self, x):
         x = self.body(x)
+        keys = list(x.keys())
+        for idx, key in enumerate(keys):
+            if self.in_channels_list[idx] == 0:
+                del x[key]
         x = self.fpn(x)
         return x

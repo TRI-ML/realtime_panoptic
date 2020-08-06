@@ -56,11 +56,10 @@ class ResNetWithModifiedFPN(nn.Module):
             in_channels_stage2 * 4,
             in_channels_stage2 * 8,
         ]
-        none_zero_in_channels_list = [ch for ch in self.in_channels_list if ch is not 0]        
 
         self.body = IntermediateLayerGetter(backbone, return_layers=return_layers)
         self.fpn = FeaturePyramidNetwork(
-            in_channels_list=none_zero_in_channels_list,
+            in_channels_list=self.in_channels_list[1:],  # nonzero only
             out_channels=out_channels,
             extra_blocks=LastLevelP6P7(out_channels, out_channels),
         )

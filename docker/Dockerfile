@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-change-held-
     libnccl-dev=${NCCL_VERSION} \
     libjpeg-dev \
     libpng-dev \
+    libgl1-mesa-glx \
     python${PYTHON_VERSION} \
     python${PYTHON_VERSION}-dev \
     python3-tk \

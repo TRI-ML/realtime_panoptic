@@ -31,7 +31,7 @@ docker-build:
 		-t ${DOCKER_IMAGE} .
 
 docker-run-test-sample:
-	nvidia-docker run --name panoptic --rm \
+	docker run --name panoptic --rm --gpus all \
 		-e DISPLAY=${DISPLAY} \
 		-v ${PWD}:${WORKSPACE} \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -50,7 +50,7 @@ docker-run-test-sample:
 		--pretrained-weight cvpr_realtime_pano_cityscapes_standalone_no_prefix.pth"
 
 docker-start:
-	nvidia-docker run --name panoptic --rm \
+	docker run --name panoptic --rm --gpus all \
 		-e DISPLAY=${DISPLAY} \
 		-v ${PWD}:${WORKSPACE} \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -63,4 +63,4 @@ docker-start:
 		-it \
 		${DOCKER_OPTS} \
 		${DOCKER_IMAGE} && \
-		nvidia-docker exec -it panoptic bash
+		docker exec -it panoptic bash

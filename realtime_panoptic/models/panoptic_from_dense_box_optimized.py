@@ -272,7 +272,7 @@ class PanopticFromDenseBox:
             ],
                                      dim=1)
 
-            h, w = image_sizes[i]
+            h, w = image_sizes
 
             boxlist = BoxList(detections, (int(w), int(h)), mode="xyxy")
             boxlist.add_field("labels", per_class)

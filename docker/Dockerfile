@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-change-held-
     libnccl-dev=${NCCL_VERSION} \
     libjpeg-dev \
     libpng-dev \
+    libgl1-mesa-glx \
     python${PYTHON_VERSION} \
     python${PYTHON_VERSION}-dev \
     python3-tk \
@@ -68,7 +69,7 @@ ENV PYTHONPATH="/workspace"
 # Install dependencies
 RUN pip install ninja yacs cython matplotlib opencv-python tqdm onnx onnxruntime coloredlogs scipy pycuda
 RUN pip uninstall -y pillow
-RUN pip install pillow-simd==6.2.2.post1 pycocotools 
+RUN pip install pillow-simd==6.2.2.post1 pycocotools
 
 # Install apex
 WORKDIR /workspace
